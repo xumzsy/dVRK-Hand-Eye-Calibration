@@ -1,0 +1,43 @@
+dVRK Stereo Camera Calibration and Phantom Detection
+Mengze Xu
+2017.05.18
+Introduction
+These packages run two Intel RealSense cameras and aruco library. A marker tag is fixed to robot arm end-effector for hand-eye calibration to register two cameras to robot base frame. Just launch "marker_to_pose_double/marker_to_pose_double.launch" to use the package. The results are in topics below
+
+Camera Information 
+camera1/color/calibrated_camera_info
+camera2/color/calibrated_camera_info
+
+Color Image
+camera1/color/image_rect_color
+camera2/color/image_rect_color
+
+Marker Pose
+camera1/color/image_rect_color
+camera2/color/image_rect_color
+
+
+1.aruco_ros
+open source package to detect marker pose. Nothing needs to be changed.
+
+2.image_pipeline
+open source package to deal with lens distortion. Nothing needs to be changed.
+
+3.librealsense & realsen
+package provided by Intel to drive camera, nothing needs to be changed.
+
+4.marker_to_pose
+package to run one camera, not used.
+
+5.marker_to_pose_doulbe
+Main package. Several parameters should be changed for new setup.
+In "/launch/marker_publiser_1(2).launch", change <arg name="markerSize"> to actual marker size.
+ 
+In "/launch/r200_nodelet_multiple_cameras.launch"
+change <arg name=camera_serial_no and camera_usb_port_id> if new cameras or usb-ports are used.
+
+Also, calibrated camera information is published in this node and can be changed in source codes.
+
+6.MatlabCode
+Matlab scripts to run. After launching cameras and dVRK console, directly run hand2eye_double.m and follow the instructions to do hand-eye calibration.
+If you want to do hand-eye calibration and phantom detection, run main_script.m; there are instructions inside file.

@@ -1,0 +1,17 @@
+<launch>
+  <!-- launch two realsense cameras, change usb_port and camera id if using other r200 cameras -->
+  <include file="$(find marker_to_pose_double)/launch/r200_nodelet_multiple_cameras.launch">
+  </include>
+
+  <include file="$(find marker_to_pose_double)/launch/marker_publisher_1.launch">
+  </include>
+
+ <include file="$(find marker_to_pose_double)/launch/marker_publisher_2.launch">
+  </include>
+
+  <node pkg="marker_to_pose_double" type="marker_to_pose_1" name="marker2pose_1">
+  </node>
+
+  <node pkg="marker_to_pose_double" type="marker_to_pose_2" name="marker2pose_2">
+  </node>
+</launch>

@@ -1,0 +1,10 @@
+<launch>
+  <include file="$(find realsense_camera)/launch/r200_nodelet_default.launch">
+  </include>
+
+  <include file="$(find aruco_ros)/launch/marker_publisher.launch">
+  </include>
+
+  <node pkg="marker_to_pose" type="marker_to_pose" name="marker2pose">
+  </node>
+</launch>
